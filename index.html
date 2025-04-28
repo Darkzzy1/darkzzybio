@@ -1,158 +1,20 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>bio by darkzzy</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      height: 100%;
-      background: linear-gradient(135deg, #000000, #1a1a1a);
-      color: white;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    #loader {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 24px;
-      letter-spacing: 2px;
-      animation: fadeOut 2s forwards;
-      animation-delay: 2s;
-    }
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        visibility: hidden;
-      }
-    }
-    .main-content {
-      opacity: 0;
-      animation: fadeIn 2s forwards;
-      animation-delay: 2s;
-      text-align: center;
-    }
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-    h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
-    h2 {
-      font-size: 24px;
-      margin-bottom: 30px;
-    }
-    a {
-      color: #00ffff;
-      font-size: 20px;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    a:hover {
-      color: #ff00ff;
-    }
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darkzzy Bio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div id="loader">Loading...</div>
-
-<div class="main-content">
-  <h1>bio by darkzzy</h1>
-  <h2>Frontend & Backend Developer</h2>
-  <div>
-    <a href="https://t.me/zero421s" target="_blank">Мой Telegram</a>
-  </div>
-  <div style="margin-top:20px;">
-    <strong>Технические навыки:</strong><br>
-    Frontend/Backend, Java, C# (Unity)
-  </div>
-</div>
-
-<audio autoplay loop>
-  <source src="https://files.catbox.moe/og4f8x.mp3" type="audio/mpeg">
-</audio>
-
-<canvas id="canvas"></canvas>
-
-<script>
-  const canvas = document.getElementById('canvas');
-  const ctx = canvas.getContext('2d');
-  let width = canvas.width = window.innerWidth;
-  let height = canvas.height = window.innerHeight;
-  let particles = [];
-
-  window.addEventListener('resize', function() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  });
-
-  document.addEventListener('mousemove', function(e) {
-    for (let i = 0; i < 5; i++) {
-      particles.push(new Particle(e.clientX, e.clientY));
-    }
-  });
-
-  function Particle(x, y) {
-    this.x = x;
-    this.y = y;
-    this.size = Math.random() * 5;
-    this.speedX = Math.random() * 3 - 1.5;
-    this.speedY = Math.random() * 3 - 1.5;
-    this.color = 'rgba(' + 
-      Math.floor(Math.random() * 255) + ',' + 
-      Math.floor(Math.random() * 255) + ',' + 
-      Math.floor(Math.random() * 255) + ',0.7)';
-  }
-
-  Particle.prototype.update = function() {
-    this.x += this.speedX;
-    this.y += this.speedY;
-    this.size -= 0.05;
-  }
-
-  Particle.prototype.draw = function() {
-    ctx.fillStyle = this.color;
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fill();
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, width, height);
-    for (let i = 0; i < particles.length; i++) {
-      particles[i].update();
-      particles[i].draw();
-      if (particles[i].size <= 0) {
-        particles.splice(i, 1);
-        i--;
-      }
-    }
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-</script>
-
+    <div class="container">
+        <h1>bio by darkzzy</h1>
+        <p>Frontend & Backend Developer</p>
+        <a href="https://t.me/zero421s" class="telegram-link">Telegram</a>
+    </div>
+    <audio autoplay loop>
+        <source src="your-music-file.mp3" type="audio/mp3">
+    </audio>
+    <script src="script.js"></script>
 </body>
 </html>
