@@ -4,7 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Darkzzy Bio</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #111;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-out forwards;
+        }
+
+        p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            animation: fadeIn 2s 0.5s ease-out forwards;
+        }
+
+        .telegram-link {
+            font-size: 1.2em;
+            text-decoration: none;
+            color: #1da1f2;
+            border: 2px solid #1da1f2;
+            padding: 10px 20px;
+            border-radius: 5px;
+            animation: fadeIn 2s 1s ease-out forwards;
+        }
+
+        .telegram-link:hover {
+            background-color: #1da1f2;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cursor {
+            position: absolute;
+            pointer-events: none;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: cursorAnim 0.5s infinite alternate;
+        }
+
+        @keyframes cursorAnim {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -12,9 +96,25 @@
         <p>Frontend & Backend Developer</p>
         <a href="https://t.me/zero421s" class="telegram-link">Telegram</a>
     </div>
+    <!-- Фоновая музыка -->
     <audio autoplay loop>
-        <source src="your-music-file.mp3" type="audio/mp3">
+        <source src="https://www.bensound.com/bensound-music/bensound-ukulele.mp3" type="audio/mp3">
+        Ваш браузер не поддерживает аудио.
     </audio>
-    <script src="script.js"></script>
+    <script>
+        // Курсор анимация
+        document.addEventListener('mousemove', function(e) {
+            const cursor = document.createElement('div');
+            cursor.classList.add('cursor');
+            document.body.appendChild(cursor);
+
+            cursor.style.left = e.pageX - 10 + 'px';
+            cursor.style.top = e.pageY - 10 + 'px';
+
+            setTimeout(function() {
+                cursor.remove();
+            }, 500);
+        });
+    </script>
 </body>
 </html>
