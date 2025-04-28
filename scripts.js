@@ -1,61 +1,15 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+// Анимация с помощью GSAP
+gsap.from("h1", { duration: 2, opacity: 0, y: -50 });
+gsap.from(".triangle", { duration: 2, opacity: 0, stagger: 0.3, scale: 0.5 });
 
-body, html {
-    height: 100%;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #f5f5f5;
-}
-
-.container {
-    text-align: center;
-}
-
-h1 {
-    font-size: 36px;
-    margin-bottom: 30px;
-}
-
-.triangle-container {
-    display: flex;
-    justify-content: space-evenly;
-    margin-bottom: 40px;
-}
-
-.triangle {
-    width: 0;
-    height: 0;
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
-    border-bottom: 100px solid #3498db;
-    animation: move 3s infinite alternate;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #2980b9;
-}
-
-@keyframes move {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-50px);
-    }
-}
+// Кнопка для отправки сообщения в Telegram
+document.getElementById("telegramBtn").addEventListener("click", function() {
+    const token = 'ВАШ_ТОКЕН_БОТА';
+    const chatId = 'ВАШ_CHAT_ID'; // Получить из @userinfobot в Telegram
+    const message = 'Привет! Это тестовое сообщение от моего сайта.';
+    
+    fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
+        .then(response => response.json())
+        .then(data => alert('Сообщение отправлено в Telegram!'))
+        .catch(error => console.error('Ошибка:', error));
+});
